@@ -219,6 +219,16 @@ export default function useNavItems(): ReturnType {
       ...config.UI.navigation.otherLinks,
     ].filter(Boolean);
 
+    // custom verify contract
+    // const verifyContract: Array<NavItem> | Array<Array<NavItem>> = [
+    //   {
+    //     text: "Verify contract",
+    //     nextRoute: { pathname: "/contract-verification" as const },
+    //     isActive: pathname.startsWith("/contract-verification"),
+    //   },
+    //   ...config.UI.navigation.otherLinks,
+    // ].filter(Boolean);
+
     const mainNavItems: ReturnType['mainNavItems'] = [
       {
         text: 'Blockchain',
@@ -270,6 +280,16 @@ export default function useNavItems(): ReturnType {
           subItems: otherNavItems,
         } :
         null,
+
+      // Custom verify contract
+      config.features.other.isEnabled ?
+        null :
+        {
+          text: 'Verify contract',
+          icon: 'verified',
+          nextRoute: { pathname: '/contract-verification' as const },
+          isActive: pathname.startsWith('/contract-verification'),
+        },
     ].filter(Boolean);
 
     const accountNavItems: ReturnType['accountNavItems'] = [
